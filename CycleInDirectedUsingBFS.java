@@ -41,6 +41,7 @@ public class CycleInDirectedUsingBFS {
             ArrayList<ArrayList<Integer>>adj = new ArrayList<>();
             for(int i = 0; i < V; i++)
                 adj.add(i, new ArrayList<Integer>());
+                
                 adj.get(5).add(0);
                 adj.get(5).add(2);
                 adj.get(2).add(3);
