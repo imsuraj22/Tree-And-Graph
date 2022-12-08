@@ -10,7 +10,7 @@ class Node
     Node() {}
     
     int getV() { return v; }
-    int getWeight() { return weight; }
+    int getWeight() { return weight; } 
 }
 
 public class MinimumSpanningTreeBruteForce {
