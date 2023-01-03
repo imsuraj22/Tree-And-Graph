@@ -5,7 +5,7 @@ import java.util.Stack;
 class TreeNode
 {
     int value;
-    TreeNode left, right;
+    BinaryTreeNode left, right;
     public TreeNode(int x)
     {
         value= x;
@@ -14,8 +14,8 @@ class TreeNode
 }
 class BSTPathSum
 {
-    static boolean hassum(TreeNode root, int sum){
-        Stack<TreeNode> nodeStack=new Stack<>();
+    static boolean hassum(BinaryTreeNode root, int sum){
+        Stack<BinaryTreeNode> nodeStack=new Stack<>();
         Stack<Integer> sumStack=new Stack<>();
 
         if(root==null){
@@ -26,7 +26,7 @@ class BSTPathSum
         sumStack.add(sum-root.value);
 
         while(!nodeStack.isEmpty()){
-            TreeNode currentNode=nodeStack.pop();
+            BinaryTreeNode currentNode=nodeStack.pop();
             int currentSum=sumStack.pop();
 
             if(currentNode.left==null && currentNode.right==null && currentSum==0){
@@ -47,12 +47,12 @@ class BSTPathSum
     }
     public static void main(String args[])
     {
-        TreeNode root = new TreeNode(5);
-        root.left = new TreeNode(2);
-        root.right = new TreeNode(6);
-        root.left.left=new TreeNode(1);
-        root.left.right=new TreeNode(4);
-        root.right.right=new TreeNode(8);
+        BinaryTreeNode root = new BinaryTreeNode(5);
+        root.left = new BinaryTreeNode(2);
+        root.right = new BinaryTreeNode(6);
+        root.left.left=new BinaryTreeNode(1);
+        root.left.right=new BinaryTreeNode(4);
+        root.right.right=new BinaryTreeNode(8);
         System.out.println(hassum(root, 8));
 
         

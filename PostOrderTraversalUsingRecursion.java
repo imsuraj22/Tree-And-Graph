@@ -2,17 +2,17 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Stack;
 
-class TreeNode{
+class BinaryTreeNode{
     int val;
     TreeNode left;
     TreeNode right;
-    TreeNode(){
+    BinaryTreeNode(){
 
     }
-    TreeNode(int val){
+    BinaryTreeNode(int val){
         this.val=val;
     }
-    TreeNode(int val,TreeNode left,TreeNode right){
+    BinaryTreeNode(int val,TreeNode left,TreeNode right){
         this.val=val;
         this.left=left;
         this.right=right;
