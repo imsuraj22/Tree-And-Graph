@@ -1,49 +1,40 @@
-import java.util.LinkedList;
-import java.util.Queue;
+import java.util.Arrays;
+
 
 public class FindClosestNode {
+    static public void dfs(int node, int[] edges, int[] dist, Boolean[] visit) {
+        visit[node] = true;
+        int neighbor = edges[node];
+        if (neighbor != -1 && !visit[neighbor]) {
+            dist[neighbor] = 1 + dist[node];
+            dfs(neighbor, edges, dist, visit);
+        }
+    }
+
     static public int closestMeetingNode(int[] edges, int node1, int node2) {
-     int n=edges.length;
-     int dist1[]=new int[n];
-     int dist2[]=new int[n];
-     
-    bfs(node1, edges, dist1,n);
-    bfs(node2, edges, dist2, n);
+        int n = edges.length;
+        int[] dist1 = new int[n], dist2 = new int[n];
+        Arrays.fill(dist1, Integer.MAX_VALUE);
+        Arrays.fill(dist2, Integer.MAX_VALUE);
+        dist1[node1] = 0;
+        dist2[node2] = 0;
 
-    int minDist=-1,minDistTillNow=Integer.MAX_VALUE;
+        Boolean[] visit1 = new Boolean[n], visit2 = new Boolean[n];
+        Arrays.fill(visit1, Boolean.FALSE);
+        Arrays.fill(visit2, Boolean.FALSE);
 
-    for(int currNode=0;currNode<n;currNode++){
-        if(minDistTillNow>Math.max(dist1[currNode], dist2[currNode])){
-            minDist=currNode;
-            minDistTillNow=Math.max(dist1[currNode], dist2[currNode]);
-        }
-    }
-    return minDist;
-     
-    }
+        dfs(node1, edges, dist1, visit1);
+        dfs(node2, edges, dist2, visit2);
 
-    static void bfs(int startNode, int edge[], int dist[],int n){
-
-        boolean visited[]=new boolean[n];
-        Queue<Integer> q=new LinkedList<>();
-
-        q.add(startNode);
-
-        while(!q.isEmpty()){
-
-            int node=q.poll();
-            if(visited[node]==true){
-                continue;
+        int minDistNode = -1, minDistTillNow = Integer.MAX_VALUE;
+        for (int currNode = 0; currNode < n; currNode++) {
+            if (minDistTillNow > Math.max(dist1[currNode], dist2[currNode])) {
+                minDistNode = currNode;
+                minDistTillNow = Math.max(dist1[currNode], dist2[currNode]);
             }
-            visited[node]=true;
-            int neighbour=edge[node];
-            if(neighbour!=-1 && !visited[neighbour]){
-                dist[neighbour]=1+dist[node];
-                q.offer(neighbour);
-            }
-
         }
 
+        return minDistNode;
     }
     public static void main(String[] args) {
         int arr[]=new int[]{2,2,3,-1};
