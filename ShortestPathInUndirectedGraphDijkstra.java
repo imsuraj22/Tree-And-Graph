@@ -2,7 +2,7 @@ import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.PriorityQueue;
 
-class Node implements Comparator<Node>
+class Node implements Comparator<NodeClass>
 {
     private int v;
     private int weight;
@@ -15,7 +15,7 @@ class Node implements Comparator<Node>
     int getWeight() { return weight; }
     
     @Override
-    public int compare(Node node1, Node node2) 
+    public int compare(NodeClass node1, NodeClass node2) 
     { 
         if (node1.weight < node2.weight) 
             return -1; 
@@ -27,23 +27,23 @@ class Node implements Comparator<Node>
 
 public class ShortestPathInUndirectedGraphDijkstra {
 
-    static void shortestPath(int s, ArrayList<ArrayList<Node>> adj, int N)
+    static void shortestPath(int s, ArrayList<ArrayList<NodeClass>> adj, int N)
     {
         int dist[] = new int[N];
         
         for(int i = 0;i<N;i++) dist[i] = 100000000;
         dist[s] = 0; 
         
-        PriorityQueue<Node> pq = new PriorityQueue<Node>(N, new Node());
-        pq.add(new Node(s, 0));
+        PriorityQueue<NodeClass> pq = new PriorityQueue<NodeClass>(N, new NodeClass());
+        pq.add(new NodeClass(s, 0));
         
         while(pq.size() > 0) {
-            Node node = pq.poll();
+            NodeClass node = pq.poll();
             
-            for(Node it: adj.get(node.getV())) {
+            for(NodeClass it: adj.get(node.getV())) {
                 if(dist[node.getV()] + it.getWeight() < dist[it.getV()]) {
                     dist[it.getV()] = dist[node.getV()] + it.getWeight(); 
-                    pq.add(new Node(it.getV(), dist[it.getV()]));
+                    pq.add(new NodeClass(it.getV(), dist[it.getV()]));
                 }
             }
         }
@@ -56,28 +56,28 @@ public class ShortestPathInUndirectedGraphDijkstra {
     public static void main(String args[])
     {
         int n = 5;
-        ArrayList<ArrayList<Node> > adj = new ArrayList<ArrayList<Node> >();
+        ArrayList<ArrayList<NodeClass> > adj = new ArrayList<ArrayList<NodeClass> >();
 		
 		for (int i = 0; i < n; i++) 
-			adj.add(new ArrayList<Node>());
+			adj.add(new ArrayList<NodeClass>());
 			
-		adj.get(0).add(new Node(1, 2));
-		adj.get(1).add(new Node(0, 2));
+		adj.get(0).add(new NodeClass(1, 2));
+		adj.get(1).add(new NodeClass(0, 2));
 		
-		adj.get(1).add(new Node(2, 4));
-		adj.get(2).add(new Node(1, 4));
+		adj.get(1).add(new NodeClass(2, 4));
+		adj.get(2).add(new NodeClass(1, 4));
 		
-		adj.get(0).add(new Node(3, 1));
-		adj.get(3).add(new Node(0, 1));
+		adj.get(0).add(new NodeClass(3, 1));
+		adj.get(3).add(new NodeClass(0, 1));
 		
-		adj.get(3).add(new Node(2, 3));
-		adj.get(2).add(new Node(3, 3));
+		adj.get(3).add(new NodeClass(2, 3));
+		adj.get(2).add(new NodeClass(3, 3));
 		
-		adj.get(1).add(new Node(4, 5));
-		adj.get(4).add(new Node(1, 5));
+		adj.get(1).add(new NodeClass(4, 5));
+		adj.get(4).add(new NodeClass(1, 5));
 		
-		adj.get(2).add(new Node(4, 1));
-		adj.get(4).add(new Node(2, 1));
+		adj.get(2).add(new NodeClass(4, 1));
+		adj.get(4).add(new NodeClass(2, 1));
 		
 		
 		shortestPath(0, adj, n); 

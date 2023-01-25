@@ -1,61 +1,71 @@
+import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.LinkedList;
-import java.util.Queue;
+
+import javax.swing.text.html.FormSubmitEvent;
 
 class Test{
-    private HashMap<Integer,LinkedList<Integer>> map=new HashMap<Integer,LinkedList<Integer>>();
-    private Queue<Integer> que;
-    Test(int v){
-        
-        que=new LinkedList<Integer>();
-    }
+    
+    static public int[][] rangeAddQueries(int n, int[][] queries) {
+        int mat[][]=new int[n][n];
+        HashMap<Integer, ArrayList<Integer>>[] array = (HashMap<Integer, ArrayList<Integer>>[]) new HashMap[n];
 
 
-void insertEdge(int v, int w){
-    LinkedList<Integer> adj=map.getOrDefault(v, new LinkedList<Integer>());
-    adj.push(w);
-    map.put(v, adj);
-    String l=map.get(v).toString();
-    System.out.println(l);
-}
+        for(int i=0;i<queries.length;i++){
+            
+                int row1=queries[i][0];
+                int col1=queries[i][1];
+                int row2=queries[i][2];
+                int col2=queries[i][3];
+  
+               
+                for(int j=row1;j<=row2;j++){
+                    int c1=col1;
+                        array[j].put(j, new ArrayList(n));
+                        while(c1<=col2){
+                            array[j].get(1).add(c1, +1);
+                            c1++;
+                        }
+                    
+                }
 
-void BFS(int source,int dest){
-map.get()
+                for (int i : array.keySet()) {
+                    for (array.Entry<Integer, ArrayList<Integer>> entry : array.get(i).entrySet()) {
+                         V value = entry.getValue();
+                    }
+                 }
 
-    while(!que.isEmpty()){
-        for(int i=que.in)
-        //n=que.poll();
-        System.out.println(n+" ");
-        for(int i=0; i<adj[n].size();i++){
-            a=adj[n].get(i);
-            if(!nodes[a]){
-                nodes[a]=true;
-                que.add(a);
-            }
+                 
+                    ArrayList<Integer> element = map[i].get(j);
+                 }
+
+
+
+
+                //     for(int j=0;j<n;j++){
+                //         for(int k=0;k<n;k++){
+                //             if(j>=row1 && j<=row2 && k>=col1 && k<=col2){
+                //                 mat[j][k]+=1;
+                //             }
+                //         }
+                    
+                // }
+
+                
+            
         }
-    }
+        return mat;
+  }
+    
 
-}
-
-public static void main(String args[])    
-    {    
-        Test graph = new Test(10);    
-        // graph.insertEdge(0, 1);    
-        // graph.insertEdge(0, 2);    
-        // graph.insertEdge(0, 3);    
-        // graph.insertEdge(1, 3);    
-        // graph.insertEdge(2, 4);  
-        // graph.insertEdge(3, 5);       
-        graph.insertEdge(3, 6);    
-        graph.insertEdge(3, 12);    
-        // graph.insertEdge(4, 7);    
-        // graph.insertEdge(4, 5);    
-        // graph.insertEdge(5, 2);    
-        // graph.insertEdge(6, 5);    
-        // graph.insertEdge(7, 5);  
-        // graph.insertEdge(7, 8);   
-        System.out.println("Breadth First Traversal for the graph is:");    
-        // graph.BFS(2);    
-    }    
+public static void main(String args[])  {  
+   int arr[][]=new int[][]{
+    {1,1,2,2},
+    {0,0,1,1}
+   };
+   int ans[][]=rangeAddQueries(3, arr);
+   for(int i=0;i<ans.length;i++){
+    System.out.println(ans[i]);
+   }
 
 } 
+}

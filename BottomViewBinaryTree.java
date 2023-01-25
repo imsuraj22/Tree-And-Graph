@@ -8,8 +8,8 @@ import javax.management.Query;
 
 class Node {
     int val;
-    Node left;
-    Node right;
+    NodeClass left;
+    NodeClass right;
 
     Node(int val) {
         this.val = val;
@@ -18,16 +18,16 @@ class Node {
     }
 }
 class Pair{
-    Node n;
+    NodeClass n;
     int line;
-    Pair(Node n,int line){
+    Pair(NodeClass n,int line){
         this.n=n;
         this.line=line;
     }
 }
 public class BottomViewBinaryTree{
 
-    public static ArrayList<Integer> bottomView(Node root) {
+    public static ArrayList<Integer> bottomView(NodeClass root) {
        Queue<Pair> q=new LinkedList<>();
        Pair p=new Pair(root, 0);
        q.add(p);
@@ -36,7 +36,7 @@ public class BottomViewBinaryTree{
        while(!q.isEmpty()){
             Pair p1=q.poll();
             int l=p1.line;
-            Node n=p1.n;
+            NodeClass n=p1.n;
             map.put(l, n.val);
 
             Pair p2;
